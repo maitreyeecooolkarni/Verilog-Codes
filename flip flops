@@ -1,0 +1,27 @@
+module tflipflop(clk, t, q);
+  input t, clk;
+  output reg q;
+
+  always @(posedge clk) begin
+    if (t)
+      q <= ~q;   
+    else
+      q <= q;    
+  end
+endmodule
+
+module srflipflop(clk,s,q,r);
+  input s,clk,r;
+  output reg q;
+  always@(posedge clk)
+    begin
+      if (s == 1'b0 && r == 1'b0)
+        q<=q;
+      else if (s == 1'b1 && r == 1'b0)
+        q<=1'b1;
+      else if (s == 1'b0 && r == 1'b1)
+        q<=1'b0;
+      else
+        q<=1'bx;
+    end
+endmodule
