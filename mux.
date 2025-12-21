@@ -5,3 +5,8 @@ module mux(select,in,out);
 
   assign out=in[select];
 endmodule
+
+//Procedural
+//always @(*) begin
+  //out = in[select]; // blocking
+//end
