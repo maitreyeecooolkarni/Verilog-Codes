@@ -1,0 +1,13 @@
+module comparator (
+    input  A,
+    input  B,
+    output less,
+    output equal,
+    output greater
+);
+
+assign less    = (A < B);
+assign equal   = (A == B);
+assign greater = (A > B);
+
+endmodule
