@@ -15,3 +15,41 @@ module and2(A,B,out);
 endmodule
 
 //Testbench
+module and2_tb;
+
+  reg A;   //Added reg cuz we have used initial block
+  reg B;
+  wire out;
+
+  and2 uut (
+    .A(A),   //Connect the and gate to the testbench
+    .B(B),
+    .out(out)
+  );
+
+  initial begin
+
+    A = 0; B = 0;
+    #1   //Delay is required becuz output wont be evaluated at t=0 and all current statements are evaluated at t=0.
+    $display(" %b  %b | %b", A, B, out);
+
+    A = 0; B = 1;
+    #1
+    $display(" %b  %b | %b", A, B, out);
+
+    A = 1; B = 0;
+    #1
+    $display(" %b  %b | %b", A, B, out);
+
+    A = 1; B = 1;
+    #1
+    $display(" %b  %b | %b", A, B, out);
+
+    $finish;
+  end
+
+endmodule
+
+
+
+
