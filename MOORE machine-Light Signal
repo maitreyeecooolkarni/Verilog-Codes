@@ -47,3 +47,40 @@ module signal(clk, state);
 
 endmodule
 
+//Code considering output and state differently
+
+module signal(clk, state, light);
+  input clk;
+  output reg [1:0] state;
+  output reg [2:0] light;
+
+  parameter RED    = 3'b000;
+  parameter GREEN  = 3'b001;
+  parameter YELLOW = 3'b011;
+  
+  parameter s1 = 2'b00;
+  parameter s2 = 2'b01;
+  parameter s3 = 2'b10;
+  
+  initial begin
+    state = s1;
+  end
+
+  always @(posedge clk) begin
+    if (state == s1) begin
+      state <= s2;
+      light <= GREEN;
+    end
+    else if (state == s2) begin
+      state <= s3;
+      light <= YELLOW;
+    end
+    else begin
+      state <= s1;
+      light <= RED;
+    end
+  end
+
+endmodule
+
+
