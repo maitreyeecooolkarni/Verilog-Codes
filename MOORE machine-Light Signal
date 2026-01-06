@@ -83,4 +83,7 @@ module signal(clk, state, light);
 
 endmodule
 
+//Writing the code where the state
+//state depends on the clock - sequentially
+//output depends on the state-combinationally
 
