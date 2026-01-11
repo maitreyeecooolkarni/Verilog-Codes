@@ -100,3 +100,4 @@ module tb_seqdetect;
     @(posedge clk) x = 1'b1;
     
   end
+endmodule
