@@ -23,6 +23,7 @@ module vendingmachine (
 
   parameter R1 = 3'b010; // 2 rupees
   parameter R2 = 3'b101; // 5 rupees
+  parameter R0 = 3'b000; // 5 rupees
 
   // Sequential block
   always @(posedge clk) begin
@@ -36,7 +37,7 @@ module vendingmachine (
   // Combinational block
   always @(*) begin
     nextstate  = state;
-    nxtstateR = productcost; //Default is added else a latch will be inferred.Learnt something new
+    nxtstateR = productcost; //Default is added else a latch will be inferred
     y1 = 1'b0;
     y2 = 1'b0;
 
@@ -46,15 +47,23 @@ module vendingmachine (
         if (P)
           nextstate = S1;
       end  //No need to write S0 as already adressed in default
+        
 
       S1: begin
         if (z1) begin
           nxtstateR = R1;
           nextstate = S2;
+       end 
+        else begin
+          nextstate = S0;
         end
         if (z2) begin
           nxtstateR = R2;
           nextstate = S2;
+        end 
+        else begin
+          nextstate = S0;
+          nxtstateR = R0;
         end
       end   
       S2: begin
