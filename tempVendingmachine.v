@@ -36,7 +36,7 @@ module vendingmachine (
   // Combinational block
   always @(*) begin
     nextstate  = state;
-    nxtstateR = productcost; //Default is added else a latch will be inferred
+    nxtstateR = productcost; //Default is added else a latch will be inferred.Learnt something new
     y1 = 1'b0;
     y2 = 1'b0;
 
