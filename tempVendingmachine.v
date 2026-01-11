@@ -129,4 +129,5 @@ initial begin
   #10 $finish;
 end
 endmodule
-//will add more like give spare change
+//will add more like give spare change and get a better verification where all inputs are checked
+
