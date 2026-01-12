@@ -1,15 +1,59 @@
-module tflipflop(clk, t, q);
-  input t, clk;
+//T flip flop
+
+module tflipflop(t,q,clk,rst);
+  input t;
+  input clk;
+  input rst;
   output reg q;
+  
+  always @(posedge clk or posedge rst) begin
+  if (rst)
+    q <= 1'b1;
+  else if (t)
+    q <= ~q;
+  else
+    q<=q;
+ end
+endmodule
 
-  always @(posedge clk) begin
-    if (t)
-      q <= ~q;   
-    else
-      q <= q;    
-  end
-endmodule //Addition of reset,without that doesnt actually work
+`timescale 1ns/1ps
 
+module tb_tflipflop;
+  reg t;
+  reg clk;
+  reg rst;
+  wire q;
+  
+  tflipflop dut(
+    .t(t),
+    .clk(clk),
+    .q(q),
+    .rst(rst)
+  );
+  
+  always #5 clk=~clk;
+  
+  initial
+    begin
+      clk = 0;
+      t=0;
+      rst=1;
+      
+      $monitor("t=%b | q=%b",t,q);
+    
+      @(posedge clk) t=1;
+      @(posedge clk) t=1;
+      rst=0;
+      @(posedge clk) t=1;
+      @(posedge clk) t=1;
+      @(posedge clk) t=1;
+      @(posedge clk) t=1;
+      @(posedge clk) t=0;
+      @(posedge clk) t=0;
+      #10 $finish;
+      
+    end
+endmodule
 
 module srflipflop(clk,s,q,r);
   input s,clk,r;
