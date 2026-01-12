@@ -8,7 +8,8 @@ module tflipflop(clk, t, q);
     else
       q <= q;    
   end
-endmodule
+endmodule //Addition of reset,without that doesnt actually work
+
 
 module srflipflop(clk,s,q,r);
   input s,clk,r;
