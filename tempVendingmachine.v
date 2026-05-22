@@ -107,3 +107,7 @@ module vendingmachine (
   end
 endmodule
 
+//State 1 - IDLE(Vending machine does nothing
+//State 2- P is the input to start the machine
+//State 3 - checks the money recieved as input
+//State 4 - Returns money
